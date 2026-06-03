@@ -28,4 +28,9 @@ public class FallbackController {
     public Mono<String> productsFallback() {
         return Mono.just("Inventory service is unavailable. Please try again later.");
     }
+
+    @GetMapping("/bills")
+    public Mono<String> billsFallback() {
+        return Mono.just("Billing service is unavailable. Please try again later.");
+    }
 }

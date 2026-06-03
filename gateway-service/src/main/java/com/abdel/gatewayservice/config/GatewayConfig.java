@@ -51,6 +51,15 @@ public class GatewayConfig {
                         )
                         .uri("lb://INVENTORY-SERVICE")
                 )
+                .route("billing-service", r -> r.path("/bills/**")
+                        .filters(f -> f
+                                .circuitBreaker(c -> c
+                                        .setName("billingCB")
+                                        .setFallbackUri("forward:/fallback/bills")
+                                )
+                        )
+                        .uri("lb://BILLING-SERVICE")
+                )
                 .build();
     }
 }

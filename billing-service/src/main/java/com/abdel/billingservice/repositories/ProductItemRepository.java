@@ -1,9 +1,12 @@
 package com.abdel.billingservice.repositories;
 
-import com.abdel.billingservice.entities.Bill;
+import com.abdel.billingservice.entities.ProductItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 @RepositoryRestResource
-public interface BillRepository extends JpaRepository<Bill, Long> {
+public interface ProductItemRepository extends JpaRepository<ProductItem, Long> {
+    List<ProductItem> findByBillId(Long billID);
 }
