@@ -23,15 +23,10 @@ public class GatewayConfig {
                 )
                 .route("muslimsalat", r -> r.path("/muslimsalat/**")
                         .filters(f -> f
-                                .addRequestHeader("x-rapidapi-host", "muslimsalat.p.rapidapi.com")
-                                .addRequestHeader("x-rapidapi-key", "fe5e774996msh4eb6e863d457420p1d2ffbjsnee0617ac5078")
-                                .rewritePath("/muslimsalat/(?<segment>.*)", "/${segment}")
-                                .circuitBreaker(c -> c
-                                        .setName("muslimsalatCB")
-                                        .setFallbackUri("forward:/fallback/muslimsalat")
-                                )
+                                .rewritePath("/muslimsalat/(?<segment>.*)", "/v1/${segment}")
+//                                .redirectTo(302, "https://api.aladhan.com")
                         )
-                        .uri("https://muslimsalat.p.rapidapi.com")
+                        .uri("https://api.aladhan.com")
                 )
                 .route("customer-service", r -> r.path("/customers/**")
                         .filters(f -> f
